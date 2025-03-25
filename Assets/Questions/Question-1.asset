@@ -10,6 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79fc001ca29050a6ea7ed2001ae780fd, type: 3}
-  m_Name: New Question
+  m_Name: Question-1
   m_EditorClassIdentifier: 
-  question: 
+  question: "\xBFCu\xE1l se considera el primer videojuego de la historia?"
+  answers:
+  - Pong
+  - Space Invaders
+  - Tennis for Two
+  - Pac-Man
+  correctAnswerIndex: 3
