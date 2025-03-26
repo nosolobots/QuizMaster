@@ -1,26 +1,73 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Quiz : MonoBehaviour
 {
-    [SerializeField]
-    QuestionSO question;
+    [SerializeField] QuestionSO question;
+    [SerializeField] TextMeshProUGUI questionText;
+    [SerializeField] GameObject[] answerButtons;
 
-    [SerializeField]
-    TextMeshProUGUI questionText;
-    
-    [SerializeField]
-    GameObject[] answerButtons;
+    // Sprites de las respuestas
+    [SerializeField] Sprite defaultAnswerSprite;
+    [SerializeField] Sprite correctAnswerSprite;
 
     void Start()
     {
-        // Mostrar la pregunta
+        GetNextQuestion();
+    }
+
+    public void OnAnswerSelected(int index)
+    {
+        GameObject button = answerButtons[index];
+
+        if (index == question.CorrectAnswerIndex)
+        {
+            // Respuesta correcta
+            questionText.text = "¡Respuesta correcta!";
+            button.GetComponent<Image>().sprite = correctAnswerSprite;
+        }
+        else
+        {
+            // Respuesta incorrecta
+            questionText.text = "Ohhh... Respuesta incorrecta";
+            button.GetComponent<Image>().sprite = defaultAnswerSprite;
+            answerButtons[question.CorrectAnswerIndex].GetComponent<Image>().sprite = correctAnswerSprite;
+        }
+
+        SetButtonState(false);
+    }
+
+    void GetNextQuestion()
+    {
+        DisplayQuestion();
+        SetButtonState(true);
+        SetDefaultAnswerSprites();
+    }
+
+    void DisplayQuestion()
+    {
         questionText.text = question.Question;
 
-        // Mostrar las respuestas
         for (int i = 0; i < answerButtons.Length; i++)
         {
             answerButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = question.GetAnswer(i);
+        }
+    }
+
+    void SetButtonState(bool state)
+    {
+        foreach (GameObject button in answerButtons)
+        {
+            button.GetComponent<Button>().interactable = state;
+        }
+    }
+
+    void SetDefaultAnswerSprites()
+    {
+        foreach (GameObject button in answerButtons)
+        {
+            button.GetComponent<Image>().sprite = defaultAnswerSprite;
         }
     }
 

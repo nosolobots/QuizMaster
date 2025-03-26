@@ -540,6 +540,8 @@ MonoBehaviour:
   - {fileID: 2123456616}
   - {fileID: 2087873419}
   - {fileID: 948488182}
+  defaultAnswerSprite: {fileID: 21300000, guid: 0feeca2ee533cdd779eec4e6a785dd48, type: 3}
+  correctAnswerSprite: {fileID: 21300000, guid: f7df38102d8795d98b30e6497078e1af, type: 3}
 --- !u!1 &443642063
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,7 +624,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 443642066}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 329605046}
+        m_TargetAssemblyTypeName: Quiz, Assembly-CSharp
+        m_MethodName: OnAnswerSelected
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &443642066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,7 +657,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2421234149185767044, guid: 0feeca2ee533cdd779eec4e6a785dd48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0feeca2ee533cdd779eec4e6a785dd48, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1067,7 +1081,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 948488185}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 329605046}
+        m_TargetAssemblyTypeName: Quiz, Assembly-CSharp
+        m_MethodName: OnAnswerSelected
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &948488185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1088,7 +1114,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2421234149185767044, guid: 0feeca2ee533cdd779eec4e6a785dd48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0feeca2ee533cdd779eec4e6a785dd48, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2191,7 +2217,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2087873422}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 329605046}
+        m_TargetAssemblyTypeName: Quiz, Assembly-CSharp
+        m_MethodName: OnAnswerSelected
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2087873422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2212,7 +2250,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2421234149185767044, guid: 0feeca2ee533cdd779eec4e6a785dd48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0feeca2ee533cdd779eec4e6a785dd48, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2312,7 +2350,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2123456619}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 329605046}
+        m_TargetAssemblyTypeName: Quiz, Assembly-CSharp
+        m_MethodName: OnAnswerSelected
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2123456619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2333,7 +2383,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2421234149185767044, guid: 0feeca2ee533cdd779eec4e6a785dd48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0feeca2ee533cdd779eec4e6a785dd48, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
