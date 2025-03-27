@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 329605043}
   - component: {fileID: 329605042}
   - component: {fileID: 329605046}
+  - component: {fileID: 329605047}
   m_Layer: 5
   m_Name: Quiz Canvas
   m_TagString: Untagged
@@ -514,6 +515,7 @@ RectTransform:
   m_Children:
   - {fileID: 1673428393}
   - {fileID: 1609276628}
+  - {fileID: 1867460716}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -542,6 +544,21 @@ MonoBehaviour:
   - {fileID: 948488182}
   defaultAnswerSprite: {fileID: 21300000, guid: 0feeca2ee533cdd779eec4e6a785dd48, type: 3}
   correctAnswerSprite: {fileID: 21300000, guid: f7df38102d8795d98b30e6497078e1af, type: 3}
+--- !u!114 &329605047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329605041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 322780b2a5932b705864bad8bfd13993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  answerTime: 30
+  reviewTime: 10
+  timerImage: {fileID: 1867460713}
 --- !u!1 &443642063
 GameObject:
   m_ObjectHideFlags: 0
@@ -1822,6 +1839,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834802893}
   m_CullTransparentMesh: 1
+--- !u!1 &1867460713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1867460716}
+  - component: {fileID: 1867460715}
+  - component: {fileID: 1867460714}
+  m_Layer: 5
+  m_Name: Timer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1867460714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867460713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 801340330791846111, guid: b78dac985d689d353a94cc17420ea7d3, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 0
+  m_FillOrigin: 2
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1867460715
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867460713}
+  m_CullTransparentMesh: 1
+--- !u!224 &1867460716
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867460713}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.2335, y: 1.2335, z: 1.2335}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 329605045}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -160.9, y: -186.2}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1897979195
 GameObject:
   m_ObjectHideFlags: 0
