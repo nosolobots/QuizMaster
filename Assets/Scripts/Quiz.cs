@@ -1,16 +1,24 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.UI;
 
 public class Quiz : MonoBehaviour
 {
-    [SerializeField] QuestionSO question;
+    [Header("Preguntas")]
+    [SerializeField] QuestionSO[] questions;
     [SerializeField] TextMeshProUGUI questionText;
-    [SerializeField] GameObject[] answerButtons;
-
+ 
     // Sprites de las respuestas
+    [Header("Botones")]
     [SerializeField] Sprite defaultAnswerSprite;
     [SerializeField] Sprite correctAnswerSprite;
+    [SerializeField] GameObject[] answerButtons;
+
+    Timer timer;    
+    bool gotAnswered;
+    int currentQuestionIndex;
+    QuestionSO question;
 
     //QuestionLoader questionLoader;
 
@@ -18,34 +26,79 @@ public class Quiz : MonoBehaviour
     {
         //questionLoader = GetComponent<QuestionLoader>();
 
+        timer = GetComponent<Timer>();  
+        
+        StartQuestion();
+    }
+
+    void StartQuestion()
+    {
         GetNextQuestion();
+        
+        timer.StartTimer();
+
+        gotAnswered = false;
+    }
+
+    void Update()
+    {
+        if (!gotAnswered && !timer.IsAnsweringState)
+        {
+            questionText.text = "¡Tiempo finalizado!";
+            
+            ShowCorrectAnswer();
+
+            SetButtonState(false);
+        }
+
+        if (timer.EndReviewState)
+        {
+            StartQuestion();
+        }
     }
 
     public void OnAnswerSelected(int index)
     {
+        // Cambiar el estado de la pregunta
+        gotAnswered = true;
+
         GameObject button = answerButtons[index];
 
         if (index == question.CorrectAnswerIndex)
         {
             // Respuesta correcta
             questionText.text = "¡Respuesta correcta!";
-            button.GetComponent<Image>().sprite = correctAnswerSprite;
         }
         else
         {
             // Respuesta incorrecta
             questionText.text = "Ohhh... Respuesta incorrecta";
-            button.GetComponent<Image>().sprite = defaultAnswerSprite;
-            answerButtons[question.CorrectAnswerIndex].GetComponent<Image>().sprite = correctAnswerSprite;
         }
 
+        // Mostrar la respuesta correcta
+        ShowCorrectAnswer();
+
         SetButtonState(false);
+
+        // Desactivar el temporizador
+        timer.CancelTimer();
+    }
+
+    void ShowCorrectAnswer()
+    {
+        answerButtons[question.CorrectAnswerIndex].GetComponent<Image>().sprite = correctAnswerSprite;
     }
 
     void GetNextQuestion()
     {
         //question = questionLoader.LoadedQuestions[Random.Range(0, questionLoader.LoadedQuestions.Count)];
-
+        question = questions[currentQuestionIndex];
+        currentQuestionIndex++;
+        if (currentQuestionIndex >= questions.Length)
+        {
+            currentQuestionIndex = 0;
+        }
+        
         DisplayQuestion();
         SetButtonState(true);
         SetDefaultAnswerSprites();

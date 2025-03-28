@@ -8,13 +8,23 @@ public class Timer : MonoBehaviour
     [SerializeField] float reviewTime;
     [SerializeField] Image timerImage;
     float timeLeft;
+    float totalTime;
     bool answeringState;
+    public bool IsAnsweringState => answeringState;
+    bool endReviewState;
+    public bool EndReviewState => endReviewState;
 
-    void Start()
+    public void StartTimer()
     {
-        timeLeft = answerTime;
-        timerImage.fillAmount = 1f;
+        ResetTimer(answerTime);
+
         answeringState = true;
+        endReviewState = false;
+    }
+
+    public void CancelTimer()
+    {
+        timeLeft = 0;
     }
 
     void Update()
@@ -22,6 +32,13 @@ public class Timer : MonoBehaviour
         UpdateTimer();
         UpdateTimerImage();
         UpdateState();
+    }
+
+    void ResetTimer(float time)
+    {
+        totalTime = time;
+        timeLeft = time;
+        timerImage.fillAmount = 1f;
     }
 
     void UpdateTimer()
@@ -38,11 +55,8 @@ public class Timer : MonoBehaviour
 
     void UpdateTimerImage()
     {
-        if (timerImage != null)
-        {
-            float fillAmount = timeLeft / answerTime;
-            timerImage.fillAmount = fillAmount;
-        }
+        float fillAmount = timeLeft / totalTime;
+        timerImage.fillAmount = fillAmount;
     }
 
     void UpdateState()
@@ -53,12 +67,14 @@ public class Timer : MonoBehaviour
             {
                 // Fin del tiempo de respuesta
                 answeringState = false;
-                timeLeft = reviewTime;
+                
+                ResetTimer(reviewTime);
             }
             else
             {
                 // Fin de la revisión
-
+                Debug.Log("Fin de la revisión");
+                endReviewState = true;
             }            
         }
     }

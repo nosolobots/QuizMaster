@@ -535,15 +535,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 004a9ce0e9d56a335be656b4483158ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  question: {fileID: 11400000, guid: 9de58e1f261aafba88294995c5b80a35, type: 2}
+  questions:
+  - {fileID: 11400000, guid: 9de58e1f261aafba88294995c5b80a35, type: 2}
+  - {fileID: 11400000, guid: 0ca3b443b53f23976841edab5204cb3f, type: 2}
+  - {fileID: 11400000, guid: 5f5da42e356122591a2ef7205b6e0c03, type: 2}
+  - {fileID: 11400000, guid: 11253a7b9104f29dd9fcbe2d160db6cd, type: 2}
+  - {fileID: 11400000, guid: 8b6ca558a58a0deef8ab7ac8160c0815, type: 2}
   questionText: {fileID: 1673428394}
+  defaultAnswerSprite: {fileID: 21300000, guid: 0feeca2ee533cdd779eec4e6a785dd48, type: 3}
+  correctAnswerSprite: {fileID: 21300000, guid: f7df38102d8795d98b30e6497078e1af, type: 3}
   answerButtons:
   - {fileID: 443642063}
   - {fileID: 2123456616}
   - {fileID: 2087873419}
   - {fileID: 948488182}
-  defaultAnswerSprite: {fileID: 21300000, guid: 0feeca2ee533cdd779eec4e6a785dd48, type: 3}
-  correctAnswerSprite: {fileID: 21300000, guid: f7df38102d8795d98b30e6497078e1af, type: 3}
 --- !u!114 &329605047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,9 +561,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 322780b2a5932b705864bad8bfd13993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  answerTime: 30
-  reviewTime: 10
-  timerImage: {fileID: 1867460713}
+  answerTime: 10
+  reviewTime: 4
+  timerImage: {fileID: 1867460714}
 --- !u!1 &443642063
 GameObject:
   m_ObjectHideFlags: 0
