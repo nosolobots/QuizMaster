@@ -1,26 +1,27 @@
-using Microsoft.Unity.VisualStudio.Editor;
+
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
     [SerializeField] float answerTime;
     [SerializeField] float reviewTime;
-    [SerializeField] GameObject timerImage;
+    [SerializeField] Image timerImage;
     float timeLeft;
+    bool answeringState;
 
     void Start()
     {
         timeLeft = answerTime;
-        if (timerImage != null)
-        {
-            timerImage.GetComponent<UnityEngine.UI.Image>().fillAmount = 1f;
-        }
+        timerImage.fillAmount = 1f;
+        answeringState = true;
     }
 
     void Update()
     {
         UpdateTimer();
         UpdateTimerImage();
+        UpdateState();
     }
 
     void UpdateTimer()
@@ -40,7 +41,25 @@ public class Timer : MonoBehaviour
         if (timerImage != null)
         {
             float fillAmount = timeLeft / answerTime;
-            timerImage.GetComponent<UnityEngine.UI.Image>().fillAmount = fillAmount;
+            timerImage.fillAmount = fillAmount;
+        }
+    }
+
+    void UpdateState()
+    {
+        if (timeLeft == 0)
+        {
+            if (answeringState)
+            {
+                // Fin del tiempo de respuesta
+                answeringState = false;
+                timeLeft = reviewTime;
+            }
+            else
+            {
+                // Fin de la revisión
+
+            }            
         }
     }
 

@@ -1,0 +1,19 @@
+{
+    "questions": [
+      {
+        "question": "¿Cuál es el planeta más grande del sistema solar?",
+        "answers": ["Marte", "Tierra", "Júpiter", "Venus"],
+        "correctAnswerIndex": 2
+      },
+      {
+        "question": "¿Quién escribió 'Don Quijote de la Mancha'?",
+        "answers": ["Miguel de Cervantes", "Gabriel García Márquez", "Pablo Neruda", "Federico García Lorca"],
+        "correctAnswerIndex": 0
+      },
+      {
+        "question": "¿Cuál es el metal más abundante en la corteza terrestre?",
+        "answers": ["Hierro", "Aluminio", "Cobre", "Oro"],
+        "correctAnswerIndex": 1
+      }
+    ]
+  }

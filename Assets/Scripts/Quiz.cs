@@ -12,8 +12,12 @@ public class Quiz : MonoBehaviour
     [SerializeField] Sprite defaultAnswerSprite;
     [SerializeField] Sprite correctAnswerSprite;
 
+    //QuestionLoader questionLoader;
+
     void Start()
     {
+        //questionLoader = GetComponent<QuestionLoader>();
+
         GetNextQuestion();
     }
 
@@ -40,6 +44,8 @@ public class Quiz : MonoBehaviour
 
     void GetNextQuestion()
     {
+        //question = questionLoader.LoadedQuestions[Random.Range(0, questionLoader.LoadedQuestions.Count)];
+
         DisplayQuestion();
         SetButtonState(true);
         SetDefaultAnswerSprites();
