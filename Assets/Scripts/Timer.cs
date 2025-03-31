@@ -4,22 +4,45 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
+   
     [SerializeField] float answerTime;
     [SerializeField] float reviewTime;
     [SerializeField] Image timerImage;
+    [SerializeField] Sprite reviewTimerSprite;
+    [SerializeField] Sprite defaultTimerSprite;
+
     float timeLeft;
     float totalTime;
-    bool answeringState;
-    public bool IsAnsweringState => answeringState;
-    bool endReviewState;
-    public bool EndReviewState => endReviewState;
+
+    public enum TimerState 
+    {
+        NotStarted,
+        Answering,
+        Reviewing,
+        ReviewEnded
+    }
+    TimerState timerState;
+    public TimerState State => timerState;
+
+    void Awake()
+    {
+        timerState = TimerState.NotStarted;
+    }
 
     public void StartTimer()
     {
-        ResetTimer(answerTime);
+        timerState = TimerState.Answering;
 
-        answeringState = true;
-        endReviewState = false;
+        timerImage.sprite = defaultTimerSprite;
+
+        ResetTimer(answerTime);
+    }
+
+    void ResetTimer(float time)
+    {
+        totalTime = time;
+        timeLeft = time;
+        timerImage.fillAmount = 1f;
     }
 
     public void CancelTimer()
@@ -29,16 +52,12 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+        if (timerState == TimerState.NotStarted)
+            return;
+
         UpdateTimer();
         UpdateTimerImage();
         UpdateState();
-    }
-
-    void ResetTimer(float time)
-    {
-        totalTime = time;
-        timeLeft = time;
-        timerImage.fillAmount = 1f;
     }
 
     void UpdateTimer()
@@ -56,25 +75,34 @@ public class Timer : MonoBehaviour
     void UpdateTimerImage()
     {
         float fillAmount = timeLeft / totalTime;
+        if (timerState == TimerState.Reviewing)
+        {
+            fillAmount = 1 - fillAmount;
+        }
         timerImage.fillAmount = fillAmount;
     }
 
-    void UpdateState()
+    void UpdateState()  
     {
         if (timeLeft == 0)
         {
-            if (answeringState)
+            if (timerState == TimerState.Answering)
             {
                 // Fin del tiempo de respuesta
-                answeringState = false;
-                
+
+                // Cambiar la imagen del temporizador a la de revisión
+                timerImage.sprite = reviewTimerSprite;
+
+                // Reiniciar el temporizador para la revisión
                 ResetTimer(reviewTime);
+
+                // Cambiar el estado a revisión
+                timerState = TimerState.Reviewing;
             }
             else
             {
-                // Fin de la revisión
-                Debug.Log("Fin de la revisión");
-                endReviewState = true;
+                // Cambiar el estado a revisión finalizada
+                timerState = TimerState.ReviewEnded;
             }            
         }
     }

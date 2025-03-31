@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -6,19 +7,28 @@ using UnityEngine.UI;
 public class Quiz : MonoBehaviour
 {
     [Header("Preguntas")]
-    [SerializeField] QuestionSO[] questions;
+    [SerializeField] List<QuestionSO> questionList = new List<QuestionSO>();
     [SerializeField] TextMeshProUGUI questionText;
- 
+    [SerializeField] TextMeshProUGUI scoreText;
+
     // Sprites de las respuestas
     [Header("Botones")]
     [SerializeField] Sprite defaultAnswerSprite;
     [SerializeField] Sprite correctAnswerSprite;
     [SerializeField] GameObject[] answerButtons;
 
+    // Game Manager
+    [Header("Game Manager")]
+    [SerializeField] GameManager gameManager;
+
+    // Slider
+    [Header("Barra de Progreso")]
+    [SerializeField] Slider progressBar;
+
     Timer timer;    
     bool gotAnswered;
-    int currentQuestionIndex;
     QuestionSO question;
+    Score score;
 
     //QuestionLoader questionLoader;
 
@@ -27,8 +37,17 @@ public class Quiz : MonoBehaviour
         //questionLoader = GetComponent<QuestionLoader>();
 
         timer = GetComponent<Timer>();  
-        
+        score = GetComponent<Score>();
+
+        SetProgressBar();
+
         StartQuestion();
+    }
+
+    void SetProgressBar()
+    {
+        progressBar.maxValue = questionList.Count;
+        progressBar.value = 0;
     }
 
     void StartQuestion()
@@ -42,16 +61,17 @@ public class Quiz : MonoBehaviour
 
     void Update()
     {
-        if (!gotAnswered && !timer.IsAnsweringState)
+        if (!gotAnswered && timer.State == Timer.TimerState.Reviewing)
         {
             questionText.text = "¡Tiempo finalizado!";
             
             ShowCorrectAnswer();
 
             SetButtonState(false);
-        }
 
-        if (timer.EndReviewState)
+            ShowScore();
+        }
+        else if (timer.State == Timer.TimerState.ReviewEnded)
         {
             StartQuestion();
         }
@@ -68,6 +88,7 @@ public class Quiz : MonoBehaviour
         {
             // Respuesta correcta
             questionText.text = "¡Respuesta correcta!";
+            score.AddCorrectAnswer();
         }
         else
         {
@@ -80,6 +101,8 @@ public class Quiz : MonoBehaviour
 
         SetButtonState(false);
 
+        ShowScore();
+
         // Desactivar el temporizador
         timer.CancelTimer();
     }
@@ -87,21 +110,38 @@ public class Quiz : MonoBehaviour
     void ShowCorrectAnswer()
     {
         answerButtons[question.CorrectAnswerIndex].GetComponent<Image>().sprite = correctAnswerSprite;
+
+        gotAnswered = true;
     }
 
     void GetNextQuestion()
     {
-        //question = questionLoader.LoadedQuestions[Random.Range(0, questionLoader.LoadedQuestions.Count)];
-        question = questions[currentQuestionIndex];
-        currentQuestionIndex++;
-        if (currentQuestionIndex >= questions.Length)
+        if (questionList.Count > 0)
         {
-            currentQuestionIndex = 0;
+            GetRandomQuestion();
+
+            DisplayQuestion();
+            score.AddQuestionVisited();
+            ShowScore();
+
+            SetButtonState(true);
+            SetDefaultAnswerSprites();
+            progressBar.value = score.QuestionsVisited;
         }
-        
-        DisplayQuestion();
-        SetButtonState(true);
-        SetDefaultAnswerSprites();
+        else
+        {
+            // No hay más preguntas, finalizar el juego o reiniciar
+            gameManager.EndGame();
+        }
+    }
+
+    QuestionSO GetRandomQuestion()
+    {
+        int randomIndex = Random.Range(0, questionList.Count);
+        question = questionList[randomIndex];
+        questionList.RemoveAt(randomIndex);
+
+        return question;
     }
 
     void DisplayQuestion()
@@ -130,4 +170,8 @@ public class Quiz : MonoBehaviour
         }
     }
 
+    void ShowScore()
+    {
+        scoreText.text = "Puntuación: " + score.CorrectAnswers + "/" + score.QuestionsVisited;
+    }
 }
