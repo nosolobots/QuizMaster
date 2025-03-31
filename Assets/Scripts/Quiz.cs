@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Quiz : MonoBehaviour
 {
     [Header("Preguntas")]
-    [SerializeField] List<QuestionSO> questionList = new List<QuestionSO>();
+    //[SerializeField] List<QuestionSO> questionList = new List<QuestionSO>();
     [SerializeField] TextMeshProUGUI questionText;
     [SerializeField] TextMeshProUGUI scoreText;
 
@@ -25,17 +25,20 @@ public class Quiz : MonoBehaviour
     [Header("Barra de Progreso")]
     [SerializeField] Slider progressBar;
 
+
     Timer timer;    
     bool gotAnswered;
     QuestionSO question;
     Score score;
+    
+    List<QuestionSO> questionList;
 
     //QuestionLoader questionLoader;
 
     void Start()
     {
-        //questionLoader = GetComponent<QuestionLoader>();
-
+        questionList = gameManager.GetQuestions();
+        
         timer = GetComponent<Timer>();  
         score = GetComponent<Score>();
 

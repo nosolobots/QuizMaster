@@ -831,12 +831,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 004a9ce0e9d56a335be656b4483158ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questionList:
-  - {fileID: 11400000, guid: 9de58e1f261aafba88294995c5b80a35, type: 2}
-  - {fileID: 11400000, guid: 0ca3b443b53f23976841edab5204cb3f, type: 2}
-  - {fileID: 11400000, guid: 5f5da42e356122591a2ef7205b6e0c03, type: 2}
-  - {fileID: 11400000, guid: 11253a7b9104f29dd9fcbe2d160db6cd, type: 2}
-  - {fileID: 11400000, guid: 8b6ca558a58a0deef8ab7ac8160c0815, type: 2}
   questionText: {fileID: 1673428394}
   scoreText: {fileID: 2115247075}
   defaultAnswerSprite: {fileID: 21300000, guid: 0feeca2ee533cdd779eec4e6a785dd48, type: 3}
@@ -1044,6 +1038,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quiz: {fileID: 329605046}
   endGame: {fileID: 2110539244}
+  questionLoader: {fileID: 832585211}
 --- !u!4 &433292987
 Transform:
   m_ObjectHideFlags: 0
@@ -1855,6 +1850,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 719403826}
   m_CullTransparentMesh: 1
+--- !u!1 &832585210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 832585212}
+  - component: {fileID: 832585211}
+  m_Layer: 0
+  m_Name: QuestionLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &832585211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832585210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0451feb838139a5efaa7de7d5a14619e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jsonFileName: questions.json
+--- !u!4 &832585212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832585210}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1100899982
 GameObject:
   m_ObjectHideFlags: 0
@@ -3869,3 +3909,4 @@ SceneRoots:
   - {fileID: 329605045}
   - {fileID: 2110539248}
   - {fileID: 433292987}
+  - {fileID: 832585212}
